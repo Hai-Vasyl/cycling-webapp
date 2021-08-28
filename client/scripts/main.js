@@ -1,8 +1,14 @@
 import { getRoutes } from "./datasets/routes.js";
 import { setParam } from "./context/main.js";
 import { updateComponent } from "./helpers/updateComponent.js";
+
 import Navbar from "./components/Navbar.js";
 import Footer from "./components/Footer.js";
+import Modal from "./components/Modal.js"
+import AuthForm from "./components/FormAuth.js";
+
+import clickReducer from "./handlers/click.js";
+import submitReducer from "./handlers/submit.js";
 
 export const setPage = async () => {
   let route, param;
@@ -43,9 +49,18 @@ export const setPage = async () => {
 export const render = async () => {
   const NavbarHTML = Navbar();
   const FooterHTML = Footer();
+  const ModalHTML = Modal()
+  const AuthFormHTML = AuthForm()
 
   const pageComplete = `
     ${NavbarHTML}
+    ${ModalHTML}
+    ${AuthFormHTML}
+    <div class="bg" id="bg" >
+        <span class="material-icons-outlined bg__btn-close sealed">
+          close
+        </span>
+      </div>
     <div id="content"></div>
     ${FooterHTML}
   `;
@@ -61,6 +76,9 @@ export const moveTo = async (path) => {
 
 document.addEventListener("DOMContentLoaded", async () => {
   await render();
+
+  document.body.addEventListener("click", clickReducer)
+  document.body.addEventListener("submit", submitReducer)
 });
 
 window.addEventListener("popstate", setPage);
