@@ -20,7 +20,7 @@ export const setParam = (newParam) => {
 };
 
 export const setUser = (user) => {
-  store.user = user;
+  store.user = {...store.user, user};
   render();
 };
 
