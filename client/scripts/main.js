@@ -69,11 +69,6 @@ export const render = async () => {
   await setPage();
 };
 
-export const moveTo = async (path) => {
-  history.pushState(null, null, path);
-  await setPage();
-};
-
 document.addEventListener("DOMContentLoaded", async () => {
   await render();
 

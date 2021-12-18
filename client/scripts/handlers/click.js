@@ -1,4 +1,4 @@
-import { openModal, closeModal, genHandler } from "./main.js";
+import { openModal, closeModal, genHandler, moveTo } from "./main.js";
 import FormAuth from "../components/FormAuth.js";
 
 const toggleAuthForm = () => {
